@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.7.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/stylesheets/style.css">
+<body>
+   <div id="container">
+    <section class="nav"><div id="navbar">
+        <a href="#"><img class="logo" src="https://download.logo.wine/logo/Pinterest/Pinterest-Logo.wine.png"></a>
+        <a href="/feed" class="btn" type="button"><span>Explore</span></a>
+       <input type="search" class="search" placeholder="Search for easy dinner and ..." class="">
+        <a href="/logout" class="btn-l" type="button"><span>Logout</span></a>
+    </div></section>
+    
+    <section class="pro"><div id="profile">
+        <img class="bgp" src="https://media.istockphoto.com/id/1463411481/vector/horizontal-banner-with-peacock-feathers-luxury-and-beautiful-decoration-design-for-text.jpg?s=612x612&w=0&k=20&c=3E5yl5xbaAUAkoIwxJfGlB-BYUdH6yIOQtvBB4msZ24=">
+       <div class="dis" ><img  class="profile-pic" src="/images/uploads/<%= user.profileImage %>">
+        <form id="uploadFile" hidden action="/fileupload" method="post" enctype="multipart/form-data">
+            <input type="file" name="image">
+        </form>
+        <span id="pencil"><i class="ri-pencil-fill"></i></span>
+        <h1 style="margin-top: 10px;"><%=user.username %></h1>
+        <p><strong>The Supreme Personality of Godhead </strong></p><p >The god of protection, compassion, tenderness, and love; and is one of the most popular </p>
+        <p><strong>Following Folowers</strong></p>
+        <a href="/addPost"   class="ubtn" type="button"><span>Upload</span></a>
+        </div>
+    </div></section>
+
+    <section id="posts">
+        <div class="cards">
+            <% user.posts.forEach(function(elm) { %>
+                <div class="card">
+                  <div>
+                    <img src="/images/uploads/<%= elm.image %>">
+                  </div>
+                  <div>
+                    <h5>
+                      <%= elm.title%> 
+                    </h5>
+                  </div>
+                </div>
+              <% }); %>
+              
+
+        </div> 
+    </section>
+   </div>
+   <script>
+    document.querySelector("#pencil").addEventListener("click",function(){
+        document.querySelector("#uploadFile input").click();
+    })
+    document.querySelector("#uploadFile input").addEventListener("change",function(){document.querySelector("#uploadFile").submit();
+})
+   </script>
+</body>
+</html>
